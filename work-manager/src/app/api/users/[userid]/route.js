@@ -1,3 +1,4 @@
+import { SendNextApiError } from '@/db/errorMessage'
 import { User } from '@/db/models/user.model'
 import { NextResponse } from 'next/server'
 
@@ -13,9 +14,11 @@ export async function GET(request, { params }) {
     })
 
   } catch (error) {
-    return NextResponse.json({
-      success: false,
-    })
+    return SendNextApiError(
+      false,
+      "error while fetching a user",
+      501
+  )
   }
 }
 
@@ -29,10 +32,11 @@ export async function DELETE(request, { params }) {
       message: "User deleted successfully"
     })
   } catch (error) {
-    return NextResponse.json({
-      success: false,
-      message: "error while deleting the user"
-    })
+    return SendNextApiError(
+      false,
+      "error while deleting a user",
+      501
+  )
   }
 }
 
@@ -59,10 +63,11 @@ export async function PUT(request, { params }) {
     })
   } catch (error) {
     console.log(error);
-    return NextResponse.json({
-      success: false,
-      message: "error while updating the user"
-    })
+    return SendNextApiError(
+      false,
+      "error while updating a user",
+      501
+  )
   }
 }
 

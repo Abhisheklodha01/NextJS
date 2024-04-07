@@ -1,23 +1,26 @@
+import { SendNextApiError } from '@/db/errorMessage'
 import { Work } from '@/db/models/work.model'
 import { NextResponse } from 'next/server'
 
 
 export async function POST(request) {
 
-    const { title, description } = await request.json()
+    const { title, description, userId } = await request.json()
 
     try {
 
-        if (!(title || description)) {
-            return NextResponse.json({
-                success: false,
-                message: "all fields are required"
-            }, { status: 400 })
+        if (!(title || description || userId)) {
+            return SendNextApiError(
+                false,
+                "all fields are required",
+                401
+            )
         }
 
         const work = await Work.create({
             title,
-            description
+            description,
+            userId
         })
 
         return NextResponse.json({
@@ -26,10 +29,11 @@ export async function POST(request) {
             work
         }, { status: 201 })
     } catch (error) {
-        return NextResponse.json({
-            success: false,
-            message: "work creation failed"
-        })
+        return SendNextApiError(
+            false,
+            "error while creating a work",
+            501
+        )
     }
 }
 
@@ -45,10 +49,11 @@ export async function GET(request) {
             works
         }, { status: 200 })
     } catch (error) {
-        return NextResponse.json({
-            success: false,
-            message: "error while fetching work"
-        }, { status: 500 })
+        return SendNextApiError(
+            false,
+            "error while fetching a user",
+            501
+        )
     }
 }
 

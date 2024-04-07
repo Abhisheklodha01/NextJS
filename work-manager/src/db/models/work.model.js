@@ -12,7 +12,8 @@ const workSchema = new Schema({
     
     user: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "users",
+        required: true
     }
 
 }, {timestamps: true})

@@ -1,4 +1,5 @@
 import { connectDB } from '@/db/db'
+import { SendNextApiError } from '@/db/errorMessage'
 import { User } from '@/db/models/user.model'
 import { NextResponse } from 'next/server'
 
@@ -16,10 +17,11 @@ export async function GET(request) {
             users
         })
     } catch (error) {
-        return NextResponse.json({
-            success: false,
-            message: "error while fatching the users"
-        })
+        return SendNextApiError(
+            false,
+            "error while fetching a user",
+            501
+        )
     }
 
 }
@@ -29,13 +31,11 @@ export async function POST(request) {
     try {
         const { name, email, password, about, profileURL } = await request.json()
         if (!(email || name || password)) {
-            return NextResponse.json({
-                message: "all fields are required",
-                success: false
-            },
-                {
-                    status: 400
-                })
+            return SendNextApiError(
+                false,
+                "all fields are required",
+                401
+            )
         }
 
         const existedUser = await User.findOne({ email })
@@ -64,12 +64,10 @@ export async function POST(request) {
                 status: 201
             })
     } catch (error) {
-        return NextResponse.json({
-            success: false,
-            message: "failed to create user"
-        },
-            {
-                status: 500
-            })
+        return SendNextApiError(
+            false,
+            "error while creating a user",
+            501
+        )
     }
 }
