@@ -17,6 +17,7 @@ export async function GET(request) {
             users
         })
     } catch (error) {
+        console.log(error);
         return SendNextApiError(
             false,
             "error while fetching a user",
