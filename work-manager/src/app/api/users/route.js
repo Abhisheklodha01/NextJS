@@ -10,7 +10,7 @@ connectDB()
 export async function GET(request) {
     let users = []
     try {
-        users = await User.find()
+        users = await User.find().select("-password")
         return NextResponse.json({
             success: true,
             users
