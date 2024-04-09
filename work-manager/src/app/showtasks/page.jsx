@@ -1,4 +1,5 @@
 import React from 'react'
+import ShowTasks from './ShowTasks'
 
 
 export const metadata = {
@@ -7,9 +8,7 @@ export const metadata = {
 
 function ShowTask() {
   return (
-    <div className='text-2xl'>
-      ShowTask
-    </div>
+     <ShowTasks />
   )
 }
 

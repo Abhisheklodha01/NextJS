@@ -19,13 +19,13 @@ export async function POST(request) {
         })
         return NextResponse.json({
             success: true,
-            message: "Task created successfully",
+            message: "Task added successfully",
             task
         })
     } catch (error) {
         return SendNextApiError(
             false,
-            "error while creating a task",
+            "error while adding a task",
             501
         )
     }

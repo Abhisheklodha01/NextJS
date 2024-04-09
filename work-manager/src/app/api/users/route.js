@@ -52,10 +52,11 @@ export async function POST(request) {
             profileURL: profileURL || "not provided"
         })
 
+
         return NextResponse.json(
             {
                 success: true,
-                message: "User created  successfully",
+                message: "SignUp successfully",
                 user
             },
             {
