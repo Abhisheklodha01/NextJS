@@ -41,7 +41,7 @@ function Header() {
           <li>
             <Link
             className="py-3 px-5 border-1  rounded-lg mr-5
-            bg-gradient-to-r from-purple-600 to-violet-600
+            bg-gradient-to-r from-sky-600 to-violet-700
             "
             href="/login">Login</Link>
           </li>
