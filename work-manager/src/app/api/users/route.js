@@ -1,10 +1,7 @@
-import { connectDB } from '@/db/db'
 import { SendNextApiError } from '@/db/errorMessage'
 import { User } from '@/db/models/user.model'
 import { NextResponse } from 'next/server'
 
-
-connectDB()
 
 
 // get all users

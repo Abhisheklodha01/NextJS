@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 
 
 export async function POST(request) {
-    const { title, content, userId } = await request.json()
+    const { title, content, userId} = await request.json()
 
     try {
 
@@ -17,7 +17,6 @@ export async function POST(request) {
             content,
             userId
         })
-
         return NextResponse.json({
             success: true,
             message: "Task created successfully",
@@ -43,6 +42,7 @@ export async function GET(request) {
             tasks
         }, { status: 200 })
     } catch (error) {
+        console.log(error);
         return SendNextApiError(
             false,
             "error while fetching tasks",

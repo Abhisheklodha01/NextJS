@@ -5,6 +5,10 @@ import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const metadata = {
+  title: "AddTask : Work Manager",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

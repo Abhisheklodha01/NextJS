@@ -1,17 +1,35 @@
+"use client";
 import Image from "next/image";
 import loginSvg from "../../assets/login.svg";
-
-export const metadata = {
-  title: "AddTask : Work Manager",
-};
+import { useState } from "react";
+import { AddTasks } from "@/services/taskService";
 
 function AddTask() {
+  const [task, setTask] = useState({
+    title: "",
+    content: "",
+    status: "none",
+    userId: "66125195af7a72630d5ffa4e",
+  });
+
+  const handleSubmit = async (e) => {
+     e.preventDefault()
+     try {
+      const result = await AddTasks(task)
+      console.log(result);
+     } catch (error) {
+      console.log(error);
+     }
+
+  }
+
   return (
     <div className="grid grid-cols-12 bg-gradient-to-b from-gray-900 to-gray-800">
       <div className="p-5 col-span-6 col-start-4 ">
         <div className="my-8 flex justify-center items-center">
           <Image
             src={loginSvg}
+            alt="login banner"
             style={{
               width: "50%",
             }}
@@ -19,7 +37,7 @@ function AddTask() {
         </div>
         <h1 className="text-2xl text-center font-medium">Add your task here</h1>
 
-        <form action="#">
+        <form action="#" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="task_title"
@@ -30,6 +48,14 @@ function AddTask() {
             <input
               type="text"
               id="task_title"
+              name="task_title"
+              onChange={(e) => {
+                setTask({
+                  ...task,
+                  title: e.target.value,
+                });
+              }}
+              value={task.title}
               className="rounded-lg w-full p-2.5 focus:outline-none bg-gray-500"
             />
             <label
@@ -41,7 +67,15 @@ function AddTask() {
             <textarea
               type="text"
               id="task_content"
+              name="task_content"
               className="rounded-lg w-full p-2.5 focus:outline-none bg-gray-500"
+              onChange={(e) => {
+                setTask({
+                  ...task,
+                  content: e.target.value,
+                });
+              }}
+              value={task.content}
             />
             <label
               htmlFor="task_status"
@@ -51,9 +85,17 @@ function AddTask() {
             </label>
             <select
               id="task_status"
+              name="task_status"
               className="rounded-lg w-full p-2.5 focus:outline-none bg-gray-500"
+              onChange={(e) => {
+                setTask({
+                  ...task,
+                  status: e.target.value,
+                });
+              }}
+              value={task.status}
             >
-              <option value="" selected disabled>
+              <option value="none" disabled>
                 ----Select Status----
               </option>
               <option value="Pending">Pending</option>
@@ -68,6 +110,11 @@ function AddTask() {
               Clear
             </button>
           </div>
+        <div>
+          {
+            task.title
+          }
+        </div>
         </form>
       </div>
     </div>
