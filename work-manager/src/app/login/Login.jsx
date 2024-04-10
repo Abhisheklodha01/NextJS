@@ -4,9 +4,11 @@ import Image from "next/image";
 import loginSvg from "../../assets/login.svg";
 import { toast } from "react-toastify";
 import Loading from "@/helper/Loading";
-import SignUP from "@/services/userService";
+import { UserLogin } from "@/services/userService";
+import { useRouter } from "next/navigation";
 
 function Login() {
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     email: "",
@@ -36,11 +38,12 @@ function Login() {
     }
     try {
       setLoading(true);
-      const result = await SignUP(data);
+      const result = await UserLogin(data);
       toast.success(result.message, {
         position: "top-center",
       });
       setLoading(false);
+      router.push("/profile")
       setData({
         email: "",
         password: "",

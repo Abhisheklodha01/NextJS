@@ -6,8 +6,10 @@ import { HttpAxios } from "@/helper/axios";
 import { toast } from "react-toastify";
 import Loading from "@/helper/Loading";
 import SignUP from "@/services/userService";
+import { useRouter } from "next/router";
 
 function Register() {
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -61,6 +63,7 @@ function Register() {
         position: "top-center",
       });
       setLoading(false);
+      router.push("/login")
       setData({
         name: "",
         email: "",
