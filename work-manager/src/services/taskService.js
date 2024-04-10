@@ -5,3 +5,9 @@ export async function AddTasks(task) {
         .then((response) => response.data)
     return result
 }
+
+export async function GetTasks(userId) {
+    const result = await HttpAxios.get(`/api/tasks/user/${userId}`)
+        .then((response) => response.data)
+    return result
+}

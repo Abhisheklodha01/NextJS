@@ -40,7 +40,7 @@ function Login() {
       setLoading(true);
       const result = await UserLogin(data);
       setLoading(false);
-      router.push("/profile")
+      router.push("/profile/user")
       toast.success(result.message, {
         position: "top-center",
       });

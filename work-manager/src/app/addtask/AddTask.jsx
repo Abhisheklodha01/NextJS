@@ -12,7 +12,6 @@ function AddTask() {
     title: "",
     content: "",
     status: "none",
-    userId: "66125195af7a72630d5ffa4e",
   });
 
   const resetForm = () => {
@@ -21,8 +20,6 @@ function AddTask() {
         title: "",
         content: "",
         status: "none",
-        userId: "66125195af7a72630d5ffa4e",
-
       })
   }
 
@@ -123,8 +120,8 @@ function AddTask() {
               <option value="none" disabled>
                 ----Select Status----
               </option>
-              <option value="Pending">Pending</option>
-              <option value="Completed">Completed</option>
+              <option value="pending">pending</option>
+              <option value="completed">completed</option>
             </select>
           </div>
           <div className="flex justify-center items-center mt-5">

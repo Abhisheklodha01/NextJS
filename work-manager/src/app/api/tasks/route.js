@@ -1,12 +1,16 @@
-import { SendNextApiError} from '@/db/errorMessage'
+import { SendNextApiError } from '@/db/errorMessage'
 import { Task } from '@/db/models/task.model'
+import { User } from '@/db/models/user.model'
 import { NextResponse } from 'next/server'
+import jwt from 'jsonwebtoken'
 
 
 export async function POST(request) {
-    const { title, content, userId} = await request.json()
+    const { title, content, userId, status } = await request.json()
 
     try {
+        const authtoken = request.cookies.get("userToken")?.value
+        const data = jwt.verify(authtoken, process.env.JWT_SECRET)
 
         if (!(title || content || userId)) {
             return SendNextApiError(false, "all fields are required", 400)
@@ -15,7 +19,8 @@ export async function POST(request) {
         const task = await Task.create({
             title,
             content,
-            userId
+            status,
+            userId: data._id
         })
         return NextResponse.json({
             success: true,
@@ -30,7 +35,6 @@ export async function POST(request) {
         )
     }
 }
-
 
 
 export async function GET(request) {
