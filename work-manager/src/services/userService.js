@@ -11,3 +11,17 @@ export async function UserLogin(data) {
         .then((response) => response.data)
     return result
 }
+
+
+export async function CurrentUser() {
+    const result = await HttpAxios.get("/api/users/currentuser")
+        .then((response) => response.data)
+    return result
+}
+
+export async function LoggedoutUser() {
+    const result = await HttpAxios.post("/api/users/logout")
+        .then((response) => response.data)
+    return result
+}
+

@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import UserProfilePage from "./UserProfile";
 
-function UserProfilePage() {
-  return (
-    <div>UserProfilePage</div>
-  )
+export const metadata = {
+  title: "Profile : Work Manager",
+};
+
+function ProfilePage() {
+  return <UserProfilePage />;
 }
 
-export default UserProfilePage
+export default ProfilePage;

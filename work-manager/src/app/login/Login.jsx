@@ -39,11 +39,11 @@ function Login() {
     try {
       setLoading(true);
       const result = await UserLogin(data);
+      setLoading(false);
+      router.push("/profile")
       toast.success(result.message, {
         position: "top-center",
       });
-      setLoading(false);
-      router.push("/profile")
       setData({
         email: "",
         password: "",

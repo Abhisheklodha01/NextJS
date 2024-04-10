@@ -6,7 +6,7 @@ import { HttpAxios } from "@/helper/axios";
 import { toast } from "react-toastify";
 import Loading from "@/helper/Loading";
 import SignUP from "@/services/userService";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function Register() {
   const router = useRouter()

@@ -9,7 +9,7 @@ export async function POST(request) {
     const { email, password } = await request.json()
 
     try {
-        const user = await User.findOne({ email })
+        const user = await User.findOne({email})
         if (!user) {
             return SendNextApiError(
                 false,
@@ -29,9 +29,10 @@ export async function POST(request) {
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
 
         const response = NextResponse.json({
+            user,
             success: true,
             message: "LoggedIn Successfully",
-            user
+            
         })
         response.cookies.set("userToken", token, {
             expiresIn: "1d" 
