@@ -1,11 +1,10 @@
-import { connectDB } from "@/db/db";
 import Image from "next/image";
 import HomeImage from '../assets/home.svg'
+import { connectDB } from "@/db/db";
 
 export const metadata = {
   title: "Home : Work Manager"
 }
-
 connectDB()
 export default function Home() {
   return (

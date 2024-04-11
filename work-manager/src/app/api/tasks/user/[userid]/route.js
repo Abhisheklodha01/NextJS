@@ -7,7 +7,7 @@ export async function GET(request, { params }) {
     let tasks = []
 
     try {
-        tasks = await Task.find({ userId: userid }).select("-userId -_id")
+        tasks = await Task.find({ userId: userid })
         return NextResponse.json({
             sucess: true,
             message: "Tasks Fetched Successfully",

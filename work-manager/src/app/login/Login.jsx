@@ -7,6 +7,7 @@ import Loading from "@/helper/Loading";
 import { UserLogin } from "@/services/userService";
 import { useRouter } from "next/navigation";
 
+
 function Login() {
   const router = useRouter()
   const [loading, setLoading] = useState(false);
@@ -40,7 +41,7 @@ function Login() {
       setLoading(true);
       const result = await UserLogin(data);
       setLoading(false);
-      router.push("/profile/user")
+      router.push("/profile")
       toast.success(result.message, {
         position: "top-center",
       });

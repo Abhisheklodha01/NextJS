@@ -33,7 +33,7 @@ function Header() {
         </h1>
       </div>
       <div>
-        {context.user && (
+        {context?.user && (
           <ul className="flex space-x-5 font-bold text-xl">
             <li className="hover:scale-110 hover:text-purple-600">
               <Link href="/">Home</Link>
@@ -49,11 +49,11 @@ function Header() {
       </div>
       {
         <div>
-          {context.user && (
+          {context?.user && (
             <ul className="flex space-x-5 text-white">
               <li>
                 <h3 className="text-gray-400 text-xl font-bold">
-                  {context.user.name}
+                  {context.user?.name}
                 </h3>
               </li>
               <li>
@@ -69,7 +69,7 @@ function Header() {
               </li>
             </ul>
           )}
-          {!context.user && (
+          {!context?.user && (
             <ul className="flex space-x-5 text-white">
               <li>
                 <Link

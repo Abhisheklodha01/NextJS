@@ -10,7 +10,8 @@ export async function GET(request, { params }) {
     const user = await User.findById(userid).select("-password")
     return NextResponse.json({
       success: true,
-      user
+      user,
+      message:"User Details fetched successfully"
     })
 
   } catch (error) {

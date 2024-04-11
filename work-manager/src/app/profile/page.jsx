@@ -1,4 +1,5 @@
 import React from "react";
+import UserProfilePage from "./UserProfile";
 
 
 export const metadata = {
@@ -8,7 +9,7 @@ export const metadata = {
 function ProfilePage() {
   return(
     <div>
-      hello
+    <UserProfilePage />
     </div>
   );
 }

@@ -11,3 +11,9 @@ export async function GetTasks(userId) {
         .then((response) => response.data)
     return result
 }
+
+export async function DeleteTask(taskId) {
+    const result = await HttpAxios.delete(`/api/tasks/${taskId}`)
+        .then((response) => response.data)
+    return result
+}

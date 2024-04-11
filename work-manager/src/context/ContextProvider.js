@@ -6,27 +6,24 @@ import { CurrentUser } from '@/services/userService'
 
 const ContextProvider = ({ children }) => {
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(undefined)
+    
+    async function fetcheUserDetails() {
+        try {
+           const loggedInUser = await CurrentUser()
+            setUser({ ...loggedInUser })
+            toast.success(loggedInUser.message, {
+                position: "top-center"
+            })
+        } catch (error) {
+            console.log(error);
+            setUser(undefined)
+        }
+    }
 
     useEffect(() => {
-        async function fetcheUserDetails() {
-            try {
-                const loggedInUser = await CurrentUser()
-                setUser({ ...loggedInUser })
-                toast.success(loggedInUser.message, {
-                    position: "top-center"
-                })
-            } catch (error) {
-                console.log(error);
-                toast.error("Error in Fetching user datails", {
-                    position: "top-center"
-                })
-                setUser(null)
-
-            }
-        }
         fetcheUserDetails()
-    }, [])
+    }, [setUser])
     return (
         <UserContext.Provider value={{ user, setUser }}>
             {children}
